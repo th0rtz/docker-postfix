@@ -13,6 +13,18 @@ VAR_MYNETWORK="\/app\/mynetwork"
 
 if [ $1 == "setup" ]; then
 
+        # Configure mynetwork
+
+        echo "-- Configuring mynetwork
+	if [ -n $VAR_MYNETWORK ]; then
+		for i in ${VAR_MYNETWORK[@}];do
+			echo $i >> "/app/mynetwork"
+		done
+		VAR_MYNETWORK="\/app\/mynetwork"
+	else
+		VAR_MYNETWORK="\/app\/mynetwork"
+	fi
+
 	#Set mailname conf
 	echo "-- Setting mailname file"
 	echo $POSTFIX_HOSTNAME > /etc/postfix/mailname
@@ -32,6 +44,7 @@ if [ $1 == "setup" ]; then
 	echo "notify_classes=bounce" >> $VAR_CFGMAIN
 	echo "always_add_missing_headers = yes" >> $VAR_CFGMAIN
 	echo "local_header_rewrite_clients = static:all" >> $VAR_CFGMAIN
+	
 fi
 
 if [ $1 == "reload" ]; then
