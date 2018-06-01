@@ -16,6 +16,10 @@ if [ $1 == "setup" ]; then
         # Configure mynetwork
 
         echo "-- Configuring mynetwork"
+	mkdir /app/
+	echo "127.0.0.0/8" >> /app/mynetwork
+	echo "[::ffff:127.0.0.0]/104" >> /app/mynetwork
+	echo "[::1]/128" >> /app/mynetwork
 	for i in ${POSTFIX_MYNETWORK[@]};do
 		echo "--- Adding network : $i"
 		echo $i >> "/app/mynetwork"
