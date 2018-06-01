@@ -50,4 +50,4 @@ echo "- Start"
 /etc/init.d/syslog-ng restart
 /etc/init.d/postfix restart
 
-sleep 20000000000000
+tail -f /var/log/mail.log
